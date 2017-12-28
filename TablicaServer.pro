@@ -18,10 +18,20 @@ SOURCES += main.cpp \
     Models/Abstracts/acounter.cpp \
     Models/Classes/counter.cpp \
     Models/Abstracts/atimer.cpp \
-    Models/Classes/timer.cpp
+    Models/Classes/timer.cpp \
+    Models/Abstracts/areversetimer.cpp \
+    Models/Classes/reversetimer.cpp \
+    Models/Abstracts/ateam.cpp \
+    Models/Classes/team.cpp \
+    Exceptions/counterkeyerror.cpp
 
 HEADERS += \
     Models/Abstracts/acounter.h \
     Models/Classes/counter.h \
     Models/Abstracts/atimer.h \
-    Models/Classes/timer.h
+    Models/Classes/timer.h \
+    Models/Abstracts/areversetimer.h \
+    Models/Classes/reversetimer.h \
+    Models/Abstracts/ateam.h \
+    Models/Classes/team.h \
+    Exceptions/counterkeyerror.h

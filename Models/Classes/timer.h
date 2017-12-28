@@ -14,8 +14,8 @@ public:
 
     // ATimer interface
 public:
-    void Start() override;
-    void End() override;
+    virtual void Start();
+    virtual void End();
     void ResetTimer() override;
     double GetSeconds() override;
 };
