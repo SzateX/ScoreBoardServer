@@ -4,7 +4,7 @@
 #include <QString>
 #include <QMap>
 #include <memory>
-#include <unordered_map>
+#include <map>
 #include "Models/Abstracts/ateam.h"
 
 class Counter;
@@ -13,7 +13,7 @@ class ACounter;
 class Team : public ATeam
 {
     QString name;
-    QMap<QString, std::unique_ptr<Counter>> counters;
+    std::map<QString, std::unique_ptr<Counter>> counters;
 public:
     bool timeoutFlag;
     bool penaltyFlag;

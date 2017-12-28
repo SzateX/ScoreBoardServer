@@ -23,7 +23,8 @@ SOURCES += main.cpp \
     Models/Classes/reversetimer.cpp \
     Models/Abstracts/ateam.cpp \
     Models/Classes/team.cpp \
-    Exceptions/counterkeyerror.cpp
+    Exceptions/counterkeyerror.cpp \
+    Models/Abstracts/agame.cpp
 
 HEADERS += \
     Models/Abstracts/acounter.h \
@@ -34,4 +35,5 @@ HEADERS += \
     Models/Classes/reversetimer.h \
     Models/Abstracts/ateam.h \
     Models/Classes/team.h \
-    Exceptions/counterkeyerror.h
+    Exceptions/counterkeyerror.h \
+    Models/Abstracts/agame.h
