@@ -3,15 +3,17 @@
 
 #include <QString>
 #include <QMap>
-#include "Exceptions/counterkeyerror.h"
+#include <memory>
+#include <unordered_map>
 #include "Models/Abstracts/ateam.h"
-#include "Models/Abstracts/acounter.h"
-#include "Models/Classes/counter.h"
+
+class Counter;
+class ACounter;
 
 class Team : public ATeam
 {
     QString name;
-    QMap<QString, Counter> counters;
+    QMap<QString, std::unique_ptr<Counter>> counters;
 public:
     bool timeoutFlag;
     bool penaltyFlag;
@@ -21,7 +23,7 @@ public:
 public:
     void SetName(const QString &name) override;
     QString GetName() override;
-    ACounter &GetCounter(const QString &key) override;
+    std::unique_ptr<ACounter>GetCounter(const QString &key) override;
 };
 
 #endif // TEAM_H
