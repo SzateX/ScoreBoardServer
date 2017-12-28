@@ -24,9 +24,9 @@ QString Team::GetName()
     return this->name;
 }
 
-std::unique_ptr<ACounter> Team::GetCounter(const QString &key)
+ACounter& Team::GetCounter(const QString &key)
 {
     if(counters.contains(key))
-        return counters[key];
+        return *counters[key];
     throw CounterKeyError();
 }

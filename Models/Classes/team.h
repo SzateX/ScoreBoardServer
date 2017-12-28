@@ -23,7 +23,7 @@ public:
 public:
     void SetName(const QString &name) override;
     QString GetName() override;
-    std::unique_ptr<ACounter>GetCounter(const QString &key) override;
+    ACounter &GetCounter(const QString &key) override;
 };
 
 #endif // TEAM_H
