@@ -4,3 +4,8 @@ ATeam::ATeam()
 {
 
 }
+
+ATeam::~ATeam()
+{
+
+}

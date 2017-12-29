@@ -4,3 +4,8 @@ AGame::AGame()
 {
 
 }
+
+AGame::~AGame()
+{
+
+}

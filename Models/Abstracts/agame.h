@@ -15,6 +15,7 @@ public:
     virtual ACounter& GetPeriodCounter() = 0;
     virtual ATeam& GetTeam(const QString& key) = 0;
     virtual AReverseTimer& GetClock(const QString& key) = 0;
+    virtual ~AGame();
 };
 
 #endif // AGAME_H

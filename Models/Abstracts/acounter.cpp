@@ -4,3 +4,8 @@ ACounter::ACounter()
 {
 
 }
+
+ACounter::~ACounter()
+{
+
+}

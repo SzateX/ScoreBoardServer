@@ -10,6 +10,7 @@ public:
     virtual void End() = 0;
     virtual void ResetTimer() = 0;
     virtual double GetSeconds() = 0;
+    virtual ~ATimer();
 };
 
 #endif // ATIMER_H

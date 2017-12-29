@@ -4,3 +4,8 @@ AReverseTimer::AReverseTimer()
 {
 
 }
+
+AReverseTimer::~AReverseTimer()
+{
+
+}

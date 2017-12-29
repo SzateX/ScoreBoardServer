@@ -4,3 +4,8 @@ ATimer::ATimer()
 {
 
 }
+
+ATimer::~ATimer()
+{
+
+}
