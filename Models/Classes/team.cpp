@@ -8,9 +8,9 @@ Team::Team(QString teamName)
     this->name = teamName;
     timeoutFlag = false;
     penaltyFlag = false;
-    counters["primary"] = std::make_unique<Counter>(0);
-    counters["secondary"] = std::make_unique<Counter>(0);
-    counters["tertiary"] = std::make_unique<Counter>(0);
+    counters["primary"] = std::make_unique<Counter, int>(0);
+    counters["secondary"] = std::make_unique<Counter, int>(0);
+    counters["tertiary"] = std::make_unique<Counter, int>(0);
 }
 
 

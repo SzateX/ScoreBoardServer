@@ -24,7 +24,10 @@ SOURCES += main.cpp \
     Models/Abstracts/ateam.cpp \
     Models/Classes/team.cpp \
     Exceptions/counterkeyerror.cpp \
-    Models/Abstracts/agame.cpp
+    Models/Abstracts/agame.cpp \
+    Models/Classes/game.cpp \
+    Exceptions/teamkeyerror.cpp \
+    Exceptions/clockkeyerror.cpp
 
 HEADERS += \
     Models/Abstracts/acounter.h \
@@ -36,4 +39,7 @@ HEADERS += \
     Models/Abstracts/ateam.h \
     Models/Classes/team.h \
     Exceptions/counterkeyerror.h \
-    Models/Abstracts/agame.h
+    Models/Abstracts/agame.h \
+    Models/Classes/game.h \
+    Exceptions/teamkeyerror.h \
+    Exceptions/clockkeyerror.h
