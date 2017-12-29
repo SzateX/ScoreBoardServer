@@ -1,4 +1,5 @@
 QT -= gui
+QT += websockets
 
 CONFIG += c++14 console
 CONFIG -= app_bundle
@@ -27,7 +28,11 @@ SOURCES += main.cpp \
     Models/Abstracts/agame.cpp \
     Models/Classes/game.cpp \
     Exceptions/teamkeyerror.cpp \
-    Exceptions/clockkeyerror.cpp
+    Exceptions/clockkeyerror.cpp \
+    Server/wsserver.cpp \
+    Parser/commandparser.cpp \
+    Parser/Commands/Abstract/acommand.cpp \
+    Parser/Commands/Classes/clockresetcommand.cpp
 
 HEADERS += \
     Models/Abstracts/acounter.h \
@@ -42,4 +47,8 @@ HEADERS += \
     Models/Abstracts/agame.h \
     Models/Classes/game.h \
     Exceptions/teamkeyerror.h \
-    Exceptions/clockkeyerror.h
+    Exceptions/clockkeyerror.h \
+    Server/wsserver.h \
+    Parser/commandparser.h \
+    Parser/Commands/Abstract/acommand.h \
+    Parser/Commands/Classes/clockresetcommand.h
