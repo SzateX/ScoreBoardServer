@@ -32,7 +32,20 @@ SOURCES += main.cpp \
     Server/wsserver.cpp \
     Parser/commandparser.cpp \
     Parser/Commands/Abstract/acommand.cpp \
-    Parser/Commands/Classes/clockresetcommand.cpp
+    Parser/Commands/Classes/clockresetcommand.cpp \
+    Parser/Commands/Classes/clocksetsecondscommand.cpp \
+    Parser/Commands/Classes/clockstartcommand.cpp \
+    Parser/Commands/Classes/clockstopcommand.cpp \
+    Parser/Commands/Classes/periodsetcommand.cpp \
+    Parser/Commands/Classes/pointsaddcommand.cpp \
+    Parser/Commands/Classes/pointsresetcommand.cpp \
+    Parser/Commands/Classes/pointssetcommand.cpp \
+    Parser/Commands/Classes/pointssubtractcommand.cpp \
+    Parser/Commands/Classes/setnamecommand.cpp \
+    Parser/Commands/Classes/setpenaltyflagcommand.cpp \
+    Parser/Commands/Classes/settimeoutflagcommand.cpp \
+    Parser/Commands/Classes/switchpenaltyflagcommand.cpp \
+    Parser/Commands/Classes/switchtimeoutflagcommand.cpp
 
 HEADERS += \
     Models/Abstracts/acounter.h \
@@ -51,4 +64,17 @@ HEADERS += \
     Server/wsserver.h \
     Parser/commandparser.h \
     Parser/Commands/Abstract/acommand.h \
-    Parser/Commands/Classes/clockresetcommand.h
+    Parser/Commands/Classes/clockresetcommand.h \
+    Parser/Commands/Classes/clocksetsecondscommand.h \
+    Parser/Commands/Classes/clockstartcommand.h \
+    Parser/Commands/Classes/clockstopcommand.h \
+    Parser/Commands/Classes/periodsetcommand.h \
+    Parser/Commands/Classes/pointsaddcommand.h \
+    Parser/Commands/Classes/pointsresetcommand.h \
+    Parser/Commands/Classes/pointssetcommand.h \
+    Parser/Commands/Classes/pointssubtractcommand.h \
+    Parser/Commands/Classes/setnamecommand.h \
+    Parser/Commands/Classes/setpenaltyflagcommand.h \
+    Parser/Commands/Classes/settimeoutflagcommand.h \
+    Parser/Commands/Classes/switchpenaltyflagcommand.h \
+    Parser/Commands/Classes/switchtimeoutflagcommand.h
