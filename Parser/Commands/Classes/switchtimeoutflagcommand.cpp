@@ -11,5 +11,5 @@ SwitchTimeoutFlagCommand::SwitchTimeoutFlagCommand(QString team)
 void SwitchTimeoutFlagCommand::Execute(AGame &gameObj)
 {
     ATeam& team = gameObj.GetTeam(this->team);
-    //TODO
+    team.SwitchTimeoutFlag();
 }

@@ -45,7 +45,9 @@ SOURCES += main.cpp \
     Parser/Commands/Classes/setpenaltyflagcommand.cpp \
     Parser/Commands/Classes/settimeoutflagcommand.cpp \
     Parser/Commands/Classes/switchpenaltyflagcommand.cpp \
-    Parser/Commands/Classes/switchtimeoutflagcommand.cpp
+    Parser/Commands/Classes/switchtimeoutflagcommand.cpp \
+    Parser/acommandfactory.cpp \
+    Parser/commandfactory.cpp
 
 HEADERS += \
     Models/Abstracts/acounter.h \
@@ -77,4 +79,6 @@ HEADERS += \
     Parser/Commands/Classes/setpenaltyflagcommand.h \
     Parser/Commands/Classes/settimeoutflagcommand.h \
     Parser/Commands/Classes/switchpenaltyflagcommand.h \
-    Parser/Commands/Classes/switchtimeoutflagcommand.h
+    Parser/Commands/Classes/switchtimeoutflagcommand.h \
+    Parser/acommandfactory.h \
+    Parser/commandfactory.h

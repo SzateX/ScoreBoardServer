@@ -10,5 +10,5 @@ SwitchPenaltyFlagCommand::SwitchPenaltyFlagCommand(QString team)
 void SwitchPenaltyFlagCommand::Execute(AGame &gameObj)
 {
     ATeam& team = gameObj.GetTeam(this->team);
-    //TODO
+    team.SwitchPenaltyFlag();
 }

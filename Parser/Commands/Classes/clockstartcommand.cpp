@@ -10,5 +10,5 @@ ClockStartCommand::ClockStartCommand(QString clock)
 void ClockStartCommand::Execute(AGame &gameObj)
 {
     AReverseTimer& timer = gameObj.GetClock(this->clock);
-    //TODO
+    timer.Start();
 }

@@ -30,3 +30,34 @@ ACounter& Team::GetCounter(const QString &key)
         return *counters[key];
     throw CounterKeyError();
 }
+
+
+void Team::SetPenaltyFlag(bool flag)
+{
+    this->penaltyFlag = flag;
+}
+
+void Team::SwitchPenaltyFlag()
+{
+    this->penaltyFlag = !(this->penaltyFlag);
+}
+
+bool Team::GetPenaltyFlag()
+{
+    return this->penaltyFlag;
+}
+
+void Team::SetTimeoutFlag(bool flag)
+{
+    this->timeoutFlag = flag;
+}
+
+void Team::SwitchTimeoutFlag()
+{
+    this->timeoutFlag = !(this->timeoutFlag);
+}
+
+bool Team::GetTimeoutFlag()
+{
+    return this->timeoutFlag;
+}

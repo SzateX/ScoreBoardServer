@@ -10,6 +10,8 @@ public:
     virtual void ResetClock() = 0;
     virtual double GetRemainingSeconds() = 0;
     virtual void SetMaxSeconds(double seconds) = 0;
+    virtual void Start() = 0;
+    virtual void End() = 0;
     virtual ~AReverseTimer();
 };
 

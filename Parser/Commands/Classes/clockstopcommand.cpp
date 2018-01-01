@@ -10,5 +10,5 @@ ClockStopCommand::ClockStopCommand(QString clock)
 void ClockStopCommand::Execute(AGame &gameObj)
 {
     AReverseTimer& timer = gameObj.GetClock(this->clock);
-    //TODO
+    timer.End();
 }

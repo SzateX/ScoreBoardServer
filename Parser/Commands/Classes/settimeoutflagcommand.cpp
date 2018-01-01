@@ -11,5 +11,5 @@ SetTimeoutFlagCommand::SetTimeoutFlagCommand(QString team, bool arg)
 void SetTimeoutFlagCommand::Execute(AGame &gameObj)
 {
     ATeam& team = gameObj.GetTeam(this->team);
-    //TODO
+    team.SetTimeoutFlag(this->arg);
 }

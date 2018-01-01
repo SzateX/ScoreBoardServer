@@ -11,5 +11,5 @@ SetPenaltyFlagCommand::SetPenaltyFlagCommand(QString team, bool arg)
 void SetPenaltyFlagCommand::Execute(AGame &gameObj)
 {
     ATeam& team = gameObj.GetTeam(this->team);
-    //TODO
+    team.SetPenaltyFlag(this->arg);
 }
