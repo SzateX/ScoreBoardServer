@@ -18,11 +18,24 @@
 
 CommandFactory::CommandFactory()
 {
-    auto g = std::bind(&CommandFactory::ParseAndGetClockReset, this, std::placeholders::_1);
+    commandMap["clock_reset"] = std::bind(&CommandFactory::ParseAndGetClockReset, std::placeholders::_1);
+    commandMap["clock_set_seconds"] = std::bind(&CommandFactory::ParseAndGetClockSet, std::placeholders::_1);
+    commandMap["clock_start"] = std::bind(&CommandFactory::ParseAndGetClockStart, std::placeholders::_1);
+    commandMap["clock_stop"] = std::bind(&CommandFactory::ParseAndGetClockStop, std::placeholders::_1);
+    commandMap["period_set"] = std::bind(&CommandFactory::ParseAndGetPeriodSet, std::placeholders::_1);
+    commandMap["points_add"] = std::bind(&CommandFactory::ParseAndGetPointsAdd, std::placeholders::_1);
+    commandMap["points_reset"] = std::bind(&CommandFactory::ParseAndGetPointsReset, std::placeholders::_1);
+    commandMap["points_set"] = std::bind(&CommandFactory::ParseAndGetPointsSet, std::placeholders::_1);
+    commandMap["points_subtract"] = std::bind(&CommandFactory::ParseAndGetPointsSubtract, std::placeholders::_1);
+    commandMap["set_name"] = std::bind(&CommandFactory::ParseAndGetSetName, std::placeholders::_1);
+    commandMap["set_penalty_flag"] = std::bind(&CommandFactory::ParseAndGetSetPenalty, std::placeholders::_1);
+    commandMap["set_timeout_flag"] = std::bind(&CommandFactory::ParseAndGetSetTimeout, std::placeholders::_1);
+    commandMap["switch_penalty_flag"] = std::bind(&CommandFactory::ParseAndGetSwitchPenalty, std::placeholders::_1);
+    commandMap["switch_timeout_flag"] = std::bind(&CommandFactory::ParseAndGetSwitchTimeout, std::placeholders::_1);
 }
 
 
-ACommand &CommandFactory::GetCommand(QJsonDocument &json)
+std::unique_ptr<ACommand> CommandFactory::GetCommand(QJsonDocument &json)
 {
     QJsonObject jsonObj = json.object();
     if(jsonObj.isEmpty())
@@ -30,108 +43,82 @@ ACommand &CommandFactory::GetCommand(QJsonDocument &json)
     if(!jsonObj.contains("cmd"))
         throw 0;
     QString cmd = jsonObj["cmd"].toString();
-    /*switch(cmd)
-    {
-        case "clock_reset":
-            return ParseAndGetClockReset(jsonObj);
-        case "clock_set_seconds":
-            return ParseAndGetClockSet(jsonObj);
-        case "clock_start":
-            return ParseAndGetClockStart(jsonObj);
-        case "clock_stop":
-            return ParseAndGetClockStop(jsonObj);
-        case "period_set":
-            return ParseAndGetPeriodSet(jsonObj);
-        case "points_add":
-            return ParseAndGetPointsAdd(jsonObj);
-        case "points_reset":
-            return ParseAndGetPointsReset(jsonObj);
-        case "points_set":
-            return ParseAndGetPointsSet(jsonObj);
-        case "points_subtract":
-            return ParseAndGetPointsSubtract(jsonObj);
-        case "set_name":
-            return ParseAndGetSetName(jsonObj);
-        case "set_penalty_flag":
-            return ParseAndGetSetPenalty(jsonObj);
-        case "set_timeout_flag":
-            return ParseAndGetSetTimeout(jsonObj);
-        case "switch_penalty_flag":
-            return ParseAndGetSwitchPenalty(jsonObj);
-        case "switch_timeout_flag":
-            return ParseAndGetSwitchTimeout(jsonObj);
-        default:
-            //throw new ParseError("There is no command: " + cmd);
-            throw 0;
-    }*/
+    if(commandMap.count(cmd))
+        return commandMap[cmd](jsonObj);
+    throw 0;
 }
 
-ACommand &CommandFactory::ParseAndGetClockReset(QJsonObject &jsonObj)
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetClockReset(QJsonObject &jsonObj)
+{
+    if(!jsonObj.contains("clock"))
+        throw 0;
+    if(!jsonObj["clock"].isString())
+        throw 0;
+    QString clock = jsonObj["clock"].toString();
+    return std::make_unique<ClockResetCommand, QString>(clock);
+}
+
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetClockSet(QJsonObject &jsonObj)
 {
 
 }
 
-ACommand &CommandFactory::ParseAndGetClockSet(QJsonObject &jsonObj)
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetClockStart(QJsonObject &jsonObj)
 {
 
 }
 
-ACommand &CommandFactory::ParseAndGetClockStart(QJsonObject &jsonObj)
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetClockStop(QJsonObject &jsonObj)
 {
 
 }
 
-ACommand &CommandFactory::ParseAndGetClockStop(QJsonObject &jsonObj)
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetPeriodSet(QJsonObject &jsonObj)
 {
 
 }
 
-ACommand &CommandFactory::ParseAndGetPeriodSet(QJsonObject &jsonObj)
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetPointsAdd(QJsonObject &jsonObj)
 {
 
 }
 
-ACommand &CommandFactory::ParseAndGetPointsAdd(QJsonObject &jsonObj)
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetPointsReset(QJsonObject &jsonObj)
 {
 
 }
 
-ACommand &CommandFactory::ParseAndGetPointsReset(QJsonObject &jsonObj)
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetPointsSet(QJsonObject &jsonObj)
 {
 
 }
 
-ACommand &CommandFactory::ParseAndGetPointsSet(QJsonObject &jsonObj)
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetPointsSubtract(QJsonObject &jsonObj)
 {
 
 }
 
-ACommand &CommandFactory::ParseAndGetPointsSubtract(QJsonObject &jsonObj)
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetSetName(QJsonObject &jsonObj)
 {
 
 }
 
-ACommand &CommandFactory::ParseAndGetSetName(QJsonObject &jsonObj)
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetSetPenalty(QJsonObject &jsonObj)
 {
 
 }
 
-ACommand &CommandFactory::ParseAndGetSetPenalty(QJsonObject &jsonObj)
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetSetTimeout(QJsonObject &jsonObj)
 {
 
 }
 
-ACommand &CommandFactory::ParseAndGetSetTimeout(QJsonObject &jsonObj)
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetSwitchPenalty(QJsonObject &jsonObj)
 {
 
 }
 
-ACommand &CommandFactory::ParseAndGetSwitchPenalty(QJsonObject &jsonObj)
-{
-
-}
-
-ACommand &CommandFactory::ParseAndGetSwitchTimeout(QJsonObject &jsonObj)
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetSwitchTimeout(QJsonObject &jsonObj)
 {
 
 }

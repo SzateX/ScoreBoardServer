@@ -2,6 +2,7 @@
 #define ACOMMANDFACTORY_H
 
 #include <QJsonDocument>
+#include <memory>
 
 class ACommand;
 
@@ -9,7 +10,7 @@ class ACommandFactory
 {
 public:
     ACommandFactory();
-    virtual ACommand& GetCommand(QJsonDocument& json) = 0;
+    virtual std::unique_ptr<ACommand> GetCommand(QJsonDocument& json) = 0;
     virtual ~ACommandFactory();
 };
 

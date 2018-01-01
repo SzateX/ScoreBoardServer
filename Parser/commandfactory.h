@@ -4,7 +4,10 @@
 #include "Parser/acommandfactory.h"
 #include <QJsonDocument>
 #include <QJsonObject>
-
+#include <QString>
+#include <memory>
+#include <map>
+#include <functional>
 class ACommand;
 
 class CommandFactory : public ACommandFactory
@@ -14,23 +17,24 @@ public:
 
     // ACommandFactory interface
 public:
-    ACommand &GetCommand(QJsonDocument &json) override;
+    std::unique_ptr<ACommand>GetCommand(QJsonDocument &json) override;
 
 private:
-    ACommand &ParseAndGetClockReset(QJsonObject &jsonObj);
-    ACommand &ParseAndGetClockSet(QJsonObject &jsonObj);
-    ACommand &ParseAndGetClockStart(QJsonObject &jsonObj);
-    ACommand &ParseAndGetClockStop(QJsonObject &jsonObj);
-    ACommand &ParseAndGetPeriodSet(QJsonObject &jsonObj);
-    ACommand &ParseAndGetPointsAdd(QJsonObject &jsonObj);
-    ACommand &ParseAndGetPointsReset(QJsonObject &jsonObj);
-    ACommand &ParseAndGetPointsSet(QJsonObject &jsonObj);
-    ACommand &ParseAndGetPointsSubtract(QJsonObject &jsonObj);
-    ACommand &ParseAndGetSetName(QJsonObject &jsonObj);
-    ACommand &ParseAndGetSetPenalty(QJsonObject &jsonObj);
-    ACommand &ParseAndGetSetTimeout(QJsonObject &jsonObj);
-    ACommand &ParseAndGetSwitchPenalty(QJsonObject &jsonObj);
-    ACommand &ParseAndGetSwitchTimeout(QJsonObject &jsonObj);
+    std::map<QString, std::function<std::unique_ptr<ACommand>(QJsonObject&)>> commandMap;
+    static std::unique_ptr<ACommand> ParseAndGetClockReset(QJsonObject &jsonObj);
+    static std::unique_ptr<ACommand> ParseAndGetClockSet(QJsonObject &jsonObj);
+    static std::unique_ptr<ACommand> ParseAndGetClockStart(QJsonObject &jsonObj);
+    static std::unique_ptr<ACommand> ParseAndGetClockStop(QJsonObject &jsonObj);
+    static std::unique_ptr<ACommand> ParseAndGetPeriodSet(QJsonObject &jsonObj);
+    static std::unique_ptr<ACommand> ParseAndGetPointsAdd(QJsonObject &jsonObj);
+    static std::unique_ptr<ACommand> ParseAndGetPointsReset(QJsonObject &jsonObj);
+    static std::unique_ptr<ACommand> ParseAndGetPointsSet(QJsonObject &jsonObj);
+    static std::unique_ptr<ACommand> ParseAndGetPointsSubtract(QJsonObject &jsonObj);
+    static std::unique_ptr<ACommand> ParseAndGetSetName(QJsonObject &jsonObj);
+    static std::unique_ptr<ACommand> ParseAndGetSetPenalty(QJsonObject &jsonObj);
+    static std::unique_ptr<ACommand> ParseAndGetSetTimeout(QJsonObject &jsonObj);
+    static std::unique_ptr<ACommand> ParseAndGetSwitchPenalty(QJsonObject &jsonObj);
+    static std::unique_ptr<ACommand> ParseAndGetSwitchTimeout(QJsonObject &jsonObj);
 
 };
 
