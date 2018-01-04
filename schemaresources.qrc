@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/Json">
+        <file alias="ClockStartCommandSchema.json">Parser/Schemas/clockstartschema.json</file>
+        <file alias="ClockStopCommandSchema.json">Parser/Schemas/clockstopschema.json</file>
+        <file alias="PeriodSetCommandSchema.json">Parser/Schemas/periodsetschema.json</file>
+        <file alias="PointsAddCommandSchema.json">Parser/Schemas/pointsaddschema.json</file>
+        <file alias="PointsResetCommandSchema.json">Parser/Schemas/pointsresetschema.json</file>
+        <file alias="PointsSetCommandSchema.json">Parser/Schemas/pointssetschema.json</file>
+        <file alias="PointsSubtractCommandSchema.json">Parser/Schemas/pointssubtractschema.json</file>
+        <file alias="SetTimeoutCommandSchema.json">Parser/Schemas/setimeoutschema.json</file>
+        <file alias="SetNameCommandSchema.json">Parser/Schemas/setnameschema.json</file>
+        <file alias="SetPenaltyCommandSchema.json">Parser/Schemas/setpenaltyschema.json</file>
+        <file alias="SwitchPenaltyCommandSchema.json">Parser/Schemas/switchpenaltyschema.json</file>
+        <file alias="SwitchTimeoutCommandSchema.json">Parser/Schemas/switchtimeoutschea.json</file>
+        <file alias="ClockResetCommandSchema.json">Parser/Schemas/clockresetschema.json</file>
+        <file alias="ClockSetSecondsCommandSchema.json">Parser/Schemas/clocksetsecondsschema.json</file>
+    </qresource>
+</RCC>

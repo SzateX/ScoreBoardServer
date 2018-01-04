@@ -1,0 +1,14 @@
+{
+    "title": "SetNameCommand",
+    "type": "object",
+    "properties": {
+        "team" : {
+            "type": "string"
+        },
+        "arg": {
+            "type": "string"
+        }
+    },
+    "required": ["team", "arg"],
+    "additionalProperties": false
+}

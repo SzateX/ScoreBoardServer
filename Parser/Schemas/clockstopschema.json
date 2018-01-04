@@ -1,0 +1,11 @@
+{
+    "title": "ClockStopCommand",
+    "type": "object",
+    "properties": {
+        "clock": {
+            "type": "string"
+        }
+    },
+    "required": ["clock"],
+    "additionalProperties": false
+}

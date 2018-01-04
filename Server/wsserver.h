@@ -2,6 +2,8 @@
 #define WSSERVER_H
 
 #include <QObject>
+#include <QTimer>
+#include "Parser/commandparser.h"
 
 class QWebSocketServer;
 class QWebSocket;
@@ -15,6 +17,8 @@ private:
     QWebSocketServer *WebSocketServer;
     QList<QWebSocket *> clients;
     bool m_debug;
+    CommandParser commandParser;
+    QTimer sendData;
 
 public:
     explicit WSServer(quint16 port, bool debug = false, QObject *parent = nullptr);
@@ -27,7 +31,7 @@ private slots:
     void processTextMessage(QString message);
     void processBinaryMessage(QByteArray message);
     void socketDisconnected();
-
+    void chujDupaSlij();
 public slots:
 };
 

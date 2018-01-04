@@ -1,0 +1,11 @@
+{
+    "title": "ClockResetCommand",
+    "type": "object",
+    "properties": {
+        "clock": {
+            "type": "string"
+        }
+    },
+    "required": ["clock"],
+    "additionalProperties": false
+}

@@ -1,0 +1,14 @@
+{
+    "title": "SetTimeoutFlagCommand",
+    "type": "object",
+    "properties": {
+        "team" : {
+            "type": "string"
+        },
+        "arg": {
+            "type": "boolean"
+        }
+    },
+    "required": ["team", "arg"],
+    "additionalProperties": false
+}

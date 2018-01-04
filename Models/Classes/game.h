@@ -6,12 +6,12 @@
 #include <memory>
 #include "Models/Abstracts/agame.h"
 #include "Models/Classes/counter.h"
+#include "Models/Abstracts/ateam.h"
+#include "Models/Abstracts/areversetimer.h"
 
 class ACounter;
-class ATeam;
-class AReverseTimer;
 
-class Game : AGame
+class Game : public AGame
 {
     std::map<QString, std::unique_ptr<ATeam>> teams;
     std::map<QString, std::unique_ptr<AReverseTimer>> clocks;

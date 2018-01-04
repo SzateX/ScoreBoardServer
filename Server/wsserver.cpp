@@ -10,6 +10,8 @@ WSServer::WSServer(quint16 port, bool debug, QObject *parent) : QObject(parent),
             qDebug() << "Echoserver listening on port" << port;
         connect(WebSocketServer, &QWebSocketServer::newConnection, this, &WSServer::onNewConnection);
         connect(WebSocketServer, &QWebSocketServer::closed, this, &WSServer::closed);
+        connect(&(this->sendData), &QTimer::timeout, this, &WSServer::chujDupaSlij);
+        this->sendData.start(500);
     }
 }
 
@@ -38,6 +40,7 @@ void WSServer::processTextMessage(QString message)
     if (pClient) {
         pClient->sendTextMessage(message);
     }
+    commandParser.Parse(message);
 }
 
 void WSServer::processBinaryMessage(QByteArray message)
@@ -58,5 +61,15 @@ void WSServer::socketDisconnected()
     if (pClient) {
         clients.removeAll(pClient);
         pClient->deleteLater();
+    }
+}
+
+void WSServer::chujDupaSlij()
+{
+    QString message = commandParser.GetGameState();
+    for(int i = 0; i < this->clients.length(); i++)
+    {
+        QWebSocket* client = clients[i];
+        client->sendTextMessage(message);
     }
 }

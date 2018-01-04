@@ -1,0 +1,14 @@
+{
+    "title": "ClockSetSecondsCommand",
+    "type": "object",
+    "properties": {
+        "clock": {
+            "type": "string"
+        },
+        "arg": {
+            "type": "integer"
+        }
+    },
+    "required": ["clock", "arg"],
+    "additionalProperties": false
+}

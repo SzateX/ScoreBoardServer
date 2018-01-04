@@ -1,0 +1,18 @@
+{
+    "title": "PointsSubtractCommand",
+    "type": "object",
+    "properties": {
+        "counter": {
+            "type": "string"
+        },
+        "team" : {
+            "type": "string"
+        },
+        "arg": {
+            "type": "integer",
+            "minimum": 0
+        }
+    },
+    "required": ["counter", "team", "arg"],
+    "additionalProperties": false
+}

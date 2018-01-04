@@ -1,0 +1,12 @@
+{
+    "title": "PeriodSetCommand",
+    "type": "object",
+    "properties": {
+        "arg": {
+            "type": "integer",
+            "minimum": 0
+        }
+    },
+    "required": ["arg"],
+    "additionalProperties": false
+}

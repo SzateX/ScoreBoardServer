@@ -1,0 +1,14 @@
+{
+    "title": "PointsResetCommand",
+    "type": "object",
+    "properties": {
+        "counter": {
+            "type": "string"
+        },
+        "team" : {
+            "type": "string"
+        },
+    },
+    "required": ["counter", "team"],
+    "additionalProperties": false
+}
