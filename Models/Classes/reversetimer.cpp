@@ -1,5 +1,5 @@
 #include "reversetimer.h"
-
+#include <QDebug>
 void ReverseTimer::ResetState()
 {
     End();
@@ -34,7 +34,8 @@ void ReverseTimer::SetMaxSeconds(double seconds)
 void ReverseTimer::Start()
 {
     double delta = this->maxSeconds - Timer::GetSeconds();
-    deffer.start(delta);
+    qDebug() << "Delta: " << delta;
+    deffer.start(delta*1000);
     Timer::Start();
 }
 

@@ -31,7 +31,7 @@ private slots:
     void processTextMessage(QString message);
     void processBinaryMessage(QByteArray message);
     void socketDisconnected();
-    void chujDupaSlij();
+    void sendDataForClients();
 public slots:
 };
 

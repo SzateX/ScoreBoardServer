@@ -10,8 +10,8 @@ WSServer::WSServer(quint16 port, bool debug, QObject *parent) : QObject(parent),
             qDebug() << "Echoserver listening on port" << port;
         connect(WebSocketServer, &QWebSocketServer::newConnection, this, &WSServer::onNewConnection);
         connect(WebSocketServer, &QWebSocketServer::closed, this, &WSServer::closed);
-        connect(&(this->sendData), &QTimer::timeout, this, &WSServer::chujDupaSlij);
-        this->sendData.start(500);
+        connect(&(this->sendData), &QTimer::timeout, this, &WSServer::sendDataForClients);
+        this->sendData.start(100);
     }
 }
 
@@ -64,7 +64,7 @@ void WSServer::socketDisconnected()
     }
 }
 
-void WSServer::chujDupaSlij()
+void WSServer::sendDataForClients()
 {
     QString message = commandParser.GetGameState();
     for(int i = 0; i < this->clients.length(); i++)
