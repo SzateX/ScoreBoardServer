@@ -5,6 +5,10 @@
 #include <memory>
 #include "Models/Abstracts/acounter.h"
 
+/*! An interface for any Team classes
+
+    Provides methods for manipulation on name of team, flags like penalty and timeout. Have possibilty to get counters.
+*/
 class ATeam
 {
 public:

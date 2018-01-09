@@ -3,6 +3,9 @@
 
 class AGame;
 
+/*!
+ * \brief The ACommand class is an interface for any commands classes
+ */
 class ACommand
 {
 public:

@@ -8,6 +8,10 @@ class ACounter;
 class ATeam;
 class AReverseTimer;
 
+/*! An interface for any Game classes
+
+    Provides methods for getting any sort of Game elements like counters, teams, and timers, which can be used for further use.
+*/
 class AGame
 {
 public:

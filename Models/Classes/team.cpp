@@ -2,6 +2,7 @@
 #include "Exceptions/counterkeyerror.h"
 #include "Models/Abstracts/acounter.h"
 #include "Models/Classes/counter.h"
+#include <QDebug>
 
 Team::Team(QString teamName)
 {
@@ -26,8 +27,10 @@ QString Team::GetName()
 
 ACounter& Team::GetCounter(const QString &key)
 {
+    //qDebug() << "Zbieram counter: " << key;
     if(counters.count(key))
         return *counters[key];
+    //qDebug() << "Wyrzuce exception Counter";
     throw CounterKeyError();
 }
 

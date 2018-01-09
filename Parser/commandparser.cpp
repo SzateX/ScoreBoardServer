@@ -6,6 +6,7 @@
 #include <QDebug>
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
+#include "Exceptions/nojsonerror.h"
 CommandParser::CommandParser()
 {
 
@@ -17,13 +18,17 @@ void CommandParser::Parse(QString txt)
     if(d.Parse(txt.toStdString().c_str()).HasParseError())
     {
         qDebug() << "Nope is not json";
-        throw 0;
+        throw NoJsonError();
     }
+    qDebug() << "Jestem w Parserze";
     commandFactory.GetCommand(d)->Execute(game);
 }
 
 QString CommandParser::GetGameState()
 {
+    rapidjson::Document e;
+    rapidjson::Document::AllocatorType& allocatore = e.GetAllocator();
+    e.SetObject();
     rapidjson::Document d;
     rapidjson::Document::AllocatorType& allocator = d.GetAllocator();
     d.SetObject();
@@ -44,10 +49,10 @@ QString CommandParser::GetGameState()
     d.AddMember("match_seconds", game.GetClock("primary").GetRemainingSeconds(), allocator);
     d.AddMember("match_twenty_four_seconds", game.GetClock("secondary").GetRemainingSeconds(), allocator);
     d.AddMember("match_period", game.GetPeriodCounter().GetPoints(), allocator);
-
+    e.AddMember("data", d, allocatore);
     rapidjson::StringBuffer strbuf;
     rapidjson::Writer<rapidjson::StringBuffer> writer(strbuf);
-    d.Accept(writer);
+    e.Accept(writer);
 
     QString str(strbuf.GetString());
     return str;

@@ -7,6 +7,9 @@
 
 class ACommand;
 
+/*!
+ * \brief The ACommandFactory class is an interface for CommandFactory
+ */
 class ACommandFactory
 {
 public:

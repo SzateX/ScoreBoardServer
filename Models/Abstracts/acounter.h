@@ -1,7 +1,10 @@
 #ifndef ACOUNTER_H
 #define ACOUNTER_H
 
+/*! An interface for any Counter classes
 
+    Provides methods for manipulation on counters like add, subtract, and setting and getting value of counter.
+*/
 class ACounter
 {
 public:

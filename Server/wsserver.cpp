@@ -1,6 +1,7 @@
 #include "wsserver.h"
 #include "QtWebSockets/qwebsocketserver.h"
 #include "QtWebSockets/qwebsocket.h"
+#include <exception>
 
 WSServer::WSServer(quint16 port, bool debug, QObject *parent) : QObject(parent), WebSocketServer(new QWebSocketServer(QStringLiteral("Echo Server"), QWebSocketServer::NonSecureMode, this)), m_debug(debug)
 {
@@ -37,10 +38,16 @@ void WSServer::processTextMessage(QString message)
     QWebSocket *pClient = qobject_cast<QWebSocket *>(sender());
     if (m_debug)
         qDebug() << "Message received:" << message;
-    if (pClient) {
+    /*if (pClient) {
         pClient->sendTextMessage(message);
+    }*/
+    try{
+        commandParser.Parse(message);
     }
-    commandParser.Parse(message);
+    catch(...)
+    {
+
+    }
 }
 
 void WSServer::processBinaryMessage(QByteArray message)

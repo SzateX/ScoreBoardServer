@@ -3,6 +3,10 @@
 
 #include <exception>
 
+/*! Exception class for getter od clock
+
+    Is throwed when there no exists counter key delivered in argument of method.
+*/
 class CounterKeyError : public std::exception
 {
 public:

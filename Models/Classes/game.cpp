@@ -3,6 +3,7 @@
 #include "Models/Classes/team.h"
 #include "Exceptions/clockkeyerror.h"
 #include "Exceptions/teamkeyerror.h"
+#include <QDebug>
 
 Game::Game() : period(Counter(1))
 {
@@ -20,8 +21,10 @@ ACounter &Game::GetPeriodCounter()
 
 ATeam &Game::GetTeam(const QString& key)
 {
+    //qDebug() << "Przyszedł mi ten team: " << key;
     if(teams.count(key))
         return *teams[key];
+    //qDebug() << "Zaraz wyrzucę exception Team";
     throw TeamKeyError();
 }
 

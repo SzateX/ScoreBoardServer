@@ -10,6 +10,9 @@ class QWebSocket;
 //QT_FORWARD_DECLARE_CLASS(QWebSocketServer)
 //QT_FORWARD_DECLARE_CLASS(QWebSocket)
 
+/*!
+ * \brief The WSServer class. Provides any connection by WebSocket
+ */
 class WSServer : public QObject
 {
     Q_OBJECT

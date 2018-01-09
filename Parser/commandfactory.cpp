@@ -13,6 +13,7 @@
 #include "Parser/Commands/Classes/settimeoutflagcommand.h"
 #include "Parser/Commands/Classes/switchpenaltyflagcommand.h"
 #include "Parser/Commands/Classes/switchtimeoutflagcommand.h"
+#include "Parser/Commands/Classes/pingcommand.h"
 #include "rapidjson/document.h"
 #include "rapidjson/schema.h"
 #include "rapidjson/stringbuffer.h"
@@ -21,6 +22,7 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <functional>
+#include "Exceptions/invalidjson.h"
 
 CommandFactory::CommandFactory()
 {
@@ -38,16 +40,26 @@ CommandFactory::CommandFactory()
     commandMap["set_timeout_flag"] = std::bind(&CommandFactory::ParseAndGetSetTimeout, std::placeholders::_1);
     commandMap["switch_penalty_flag"] = std::bind(&CommandFactory::ParseAndGetSwitchPenalty, std::placeholders::_1);
     commandMap["switch_timeout_flag"] = std::bind(&CommandFactory::ParseAndGetSwitchTimeout, std::placeholders::_1);
+    commandMap["ping"] = std::bind(&CommandFactory::ParseAndGetPing, std::placeholders::_1);
 }
 
 
 std::unique_ptr<ACommand> CommandFactory::GetCommand(rapidjson::Document& json)
 {
-    assert(json.HasMember("cmd"));
-    assert(json["cmd"].IsString());
+    if(!json.HasMember("cmd"))
+        throw InvalidJson();
+    if(!json["cmd"].IsString())
+        throw InvalidJson();
     QString cmd = QString::fromStdString(json["cmd"].GetString());
     json.RemoveMember("cmd");
+    if(commandMap.count(cmd) != 1)
+        throw InvalidJson();
     return commandMap[cmd](json);
+}
+
+std::unique_ptr<ACommand> CommandFactory::ParseAndGetPing(rapidjson::Document &jsonObj)
+{
+    return std::make_unique<PingCommand>();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetClockReset(rapidjson::Document &jsonObj)
@@ -60,7 +72,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetClockReset(rapidjson::Docum
         QString clock = jsonObj["clock"].GetString();
         return std::make_unique<ClockResetCommand>(clock);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetClockSet(rapidjson::Document &jsonObj)
@@ -74,7 +86,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetClockSet(rapidjson::Documen
         int arg = jsonObj["arg"].GetInt();
         return std::make_unique<ClockSetSecondsCommand>(clock, arg);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetClockStart(rapidjson::Document &jsonObj)
@@ -87,7 +99,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetClockStart(rapidjson::Docum
         QString clock = jsonObj["clock"].GetString();
         return std::make_unique<ClockStartCommand>(clock);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetClockStop(rapidjson::Document &jsonObj)
@@ -100,7 +112,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetClockStop(rapidjson::Docume
         QString clock = jsonObj["clock"].GetString();
         return std::make_unique<ClockStopCommand>(clock);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetPeriodSet(rapidjson::Document &jsonObj)
@@ -113,7 +125,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetPeriodSet(rapidjson::Docume
         int arg = jsonObj["arg"].GetInt();
         return std::make_unique<PeriodSetCommand>(arg);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetPointsAdd(rapidjson::Document &jsonObj)
@@ -128,7 +140,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetPointsAdd(rapidjson::Docume
         int arg = jsonObj["arg"].GetInt();
         return std::make_unique<PointsAddCommand>(counter, team, arg);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetPointsReset(rapidjson::Document &jsonObj)
@@ -142,7 +154,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetPointsReset(rapidjson::Docu
         QString team = jsonObj["team"].GetString();
         return std::make_unique<PointsResetCommand>(counter, team);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetPointsSet(rapidjson::Document &jsonObj)
@@ -157,7 +169,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetPointsSet(rapidjson::Docume
         int arg = jsonObj["arg"].GetInt();
         return std::make_unique<PointsSetCommand>(counter, team, arg);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetPointsSubtract(rapidjson::Document &jsonObj)
@@ -172,7 +184,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetPointsSubtract(rapidjson::D
         int arg = jsonObj["arg"].GetInt();
         return std::make_unique<PointsSubtractCommand>(counter, team, arg);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetSetName(rapidjson::Document &jsonObj)
@@ -186,7 +198,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetSetName(rapidjson::Document
         QString arg = jsonObj["arg"].GetString();
         return std::make_unique<SetNameCommand>(team, arg);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetSetPenalty(rapidjson::Document &jsonObj)
@@ -200,7 +212,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetSetPenalty(rapidjson::Docum
         bool arg = jsonObj["arg"].GetBool();
         return std::make_unique<SetPenaltyFlagCommand>(team, arg);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetSetTimeout(rapidjson::Document &jsonObj)
@@ -214,7 +226,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetSetTimeout(rapidjson::Docum
         bool arg = jsonObj["arg"].GetBool();
         return std::make_unique<SetTimeoutFlagCommand>(team, arg);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetSwitchPenalty(rapidjson::Document &jsonObj)
@@ -227,7 +239,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetSwitchPenalty(rapidjson::Do
         QString team = jsonObj["team"].GetString();
         return std::make_unique<SwitchPenaltyFlagCommand>(team);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 std::unique_ptr<ACommand> CommandFactory::ParseAndGetSwitchTimeout(rapidjson::Document &jsonObj)
@@ -240,7 +252,7 @@ std::unique_ptr<ACommand> CommandFactory::ParseAndGetSwitchTimeout(rapidjson::Do
         QString team = jsonObj["team"].GetString();
         return std::make_unique<SwitchTimeoutFlagCommand>(team);
     }
-    throw 0;
+    throw InvalidJson();
 }
 
 QString CommandFactory::GetSchemaString(QString &filename)

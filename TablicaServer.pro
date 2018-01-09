@@ -48,6 +48,9 @@ SOURCES += main.cpp \
     Parser/Commands/Classes/switchtimeoutflagcommand.cpp \
     Parser/acommandfactory.cpp \
     Parser/commandfactory.cpp \
+    Exceptions/nojsonerror.cpp \
+    Exceptions/invalidjson.cpp \
+    Parser/Commands/Classes/pingcommand.cpp
 
 HEADERS += \
     Models/Abstracts/acounter.h \
@@ -118,6 +121,11 @@ HEADERS += \
     rapidjson/stream.h \
     rapidjson/stringbuffer.h \
     rapidjson/writer.h \
+    Exceptions/nojsonerror.h \
+    Exceptions/invalidjson.h \
+    Parser/Commands/Classes/pingcommand.h
 
 RESOURCES += \
     schemaresources.qrc
+
+DISTFILES +=

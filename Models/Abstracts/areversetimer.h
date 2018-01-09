@@ -3,6 +3,10 @@
 
 #include "Models/Abstracts/atimer.h"
 
+/*! An interface for any ReverseTimer classes
+
+    Provides methods for manipulation on reverse timer (timer which counts from top to bottom).
+*/
 class AReverseTimer
 {
 public:

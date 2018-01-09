@@ -1,7 +1,10 @@
 #ifndef ATIMER_H
 #define ATIMER_H
 
+/*! An interface for any Timer classes
 
+    Provides methods for manipulation on timer like, start, stop, and reset. This sort of timers should count from bottom to top
+*/
 class ATimer
 {
 public:

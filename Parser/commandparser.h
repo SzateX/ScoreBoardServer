@@ -4,6 +4,10 @@
 #include <QString>
 #include "Models/Classes/game.h"
 #include "Parser/commandfactory.h"
+
+/*!
+ * \brief The CommandParser class. This class parse and execute commands and return all state of game ready to sent to clients.
+ */
 class CommandParser
 {
     Game game;
